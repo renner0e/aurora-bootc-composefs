@@ -21,7 +21,7 @@ ARG CHUNKAH_CONFIG_STR
 RUN --mount=from=raw,src=/,target=/chunkah,ro \
     --mount=type=bind,target=/run/src,rw \
         chunkah build \
-        --max-layers= 448 \
+        --max-layers=448 \
         --compressed \
         --prune /sysroot/ > /run/src/out.ociarchive
 
