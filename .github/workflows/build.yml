@@ -117,7 +117,7 @@ jobs:
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
         run: |
           export CHUNKAH_CONFIG_STR="$(podman inspect ${IMAGE_NAME})"
-          buildah build --build-arg CHUNKAH_CONFIG_STR="${CHUNKAH_CONFIG_STR}" -t "${IMAGE_NAME}" --skip-unused-stages=false -v $(pwd):/run/src --security-opt=label=disable .
+          buildah build --target=chunkah --build-arg CHUNKAH_CONFIG_STR="${CHUNKAH_CONFIG_STR}" -t "${IMAGE_NAME}" --skip-unused-stages=false -v $(pwd):/run/src --security-opt=label=disable .
 
       - name: Login to GitHub Container Registry
         if: github.event_name != 'pull_request'
